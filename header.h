@@ -19,6 +19,9 @@ void free_arr(char *av[]);
 int is_executable(char *cmd);
 int search_path(char *cmd, char **fullpath);
 int full_path(char *cmd, char **fullpath);
-void child_process(char *path, char *av[], char *line);
+void itoa(int num, char *buffer);
+int _error(char *program, char *av[], int runs);
+void child_process(char *program, int runs,
+		char *path, char *av[], char *line);
 
 #endif
