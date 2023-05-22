@@ -22,6 +22,7 @@ int full_path(char *cmd, char **fullpath);
 void itoa(int num, char *buffer);
 int _error(char *program, char *av[], int runs);
 void child_process(char *program, int runs,
-		char *path, char *av[], char *line);
+char *path, char *av[], char *line);
+char *_getenv(const char *name);
 
 #endif
