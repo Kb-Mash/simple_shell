@@ -11,11 +11,10 @@ void parse_command(char *av[], char *lineptr, char *delim)
 	char *token = NULL;
 	unsigned int i = 0;
 
-	token = strtok(lineptr, delim);
 	while (token != NULL && i < SIZE - 1)
 	{
 		av[i++] = _strdup(token);
-		token = strtok(NULL, delim);
+		token = _strtok(NULL, delim);
 	}
 	av[i] = NULL;
 }

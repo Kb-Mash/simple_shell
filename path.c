@@ -24,13 +24,13 @@ int search_path(char *cmd, char **fullpath)
 {
 	char *path = _getenv("PATH"), *path_copy, *dir;
 	unsigned int cmd_len = strlen(cmd), path_len = strlen(path), dir_len = 0;
-
 	path_copy = malloc(path_len + 1);
+	
 	if (path_copy == NULL)
 		return (1);
 	strcpy(path_copy, path);
 
-	dir = strtok(path_copy, ":");
+	dir = _strtok(path_copy, ":");
 	if (dir == NULL)
 		dir = strtok(NULL, ":");
 	while (dir != NULL)
@@ -57,7 +57,7 @@ int search_path(char *cmd, char **fullpath)
 		{
 			free(*fullpath);
 			*fullpath = NULL;
-			dir = strtok(NULL, ":");
+			dir = _strtok(NULL, ":");
 		}
 	}
 	free(path);
