@@ -23,6 +23,12 @@ void itoa(int num, char *buffer);
 int _error(char *program, char *av[], int runs);
 void child_process(char *program, int runs,
 char *path, char *av[], char *line);
-char *_getenv(const char *name);
+char *_getenv(char *name);
+
+/*string function prototypes*/
+int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
+char *_strdup(char *s);
+char *_strcpy(char *dest,char *src);
 
 #endif

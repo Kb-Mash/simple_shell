@@ -19,11 +19,11 @@ int main(int __attribute__ ((unused)) argc, char **argv)
 		++runs;
 		if (isatty(STDIN_FILENO))
 		{
-			write(STDOUT_FILENO, "($) ", strlen("($) "));
+			write(STDOUT_FILENO, "($) ", _strlen("($) "));
 			fflush(stdout);
 		}
 		line = getline(&lineptr, &n, stdin);
-		if (line == EOF || strcmp(lineptr, "exit\n") == 0)
+		if (line == EOF || _strcmp(lineptr, "exit\n") == 0)
 		{
 			free(lineptr);
 			break;

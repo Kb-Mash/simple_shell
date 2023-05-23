@@ -22,7 +22,7 @@ int is_executable(char *cmd)
  */
 int search_path(char *cmd, char **fullpath)
 {
-	char *path = getenv("PATH"), *path_copy, *dir;
+	char *path = _getenv("PATH"), *path_copy, *dir;
 	unsigned int cmd_len = strlen(cmd), path_len = strlen(path), dir_len = 0;
 
 	path_copy = malloc(path_len + 1);
@@ -39,6 +39,7 @@ int search_path(char *cmd, char **fullpath)
 		*fullpath = malloc(dir_len + cmd_len + 2);
 		if (*fullpath == NULL)
 		{
+			free(path);
 			free(path_copy);
 			return (1);
 		}
@@ -48,6 +49,7 @@ int search_path(char *cmd, char **fullpath)
 		(*fullpath)[dir_len + cmd_len + 1] = '\0';
 		if (is_executable(*fullpath))
 		{
+			free(path);
 			free(path_copy);
 			return (0);
 		}
@@ -58,6 +60,7 @@ int search_path(char *cmd, char **fullpath)
 			dir = strtok(NULL, ":");
 		}
 	}
+	free(path);
 	free(path_copy);
 	return (1);
 }
@@ -72,7 +75,7 @@ int full_path(char *cmd, char **fullpath)
 {
 	if (is_executable(cmd))
 	{
-		*fullpath = strdup(cmd);
+		*fullpath = _strdup(cmd);
 		if (*fullpath == NULL)
 		{
 			return (1);

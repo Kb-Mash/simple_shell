@@ -14,7 +14,7 @@ void parse_command(char *av[], char *lineptr, char *delim)
 	token = strtok(lineptr, delim);
 	while (token != NULL && i < SIZE - 1)
 	{
-		av[i++] = strdup(token);
+		av[i++] = _strdup(token);
 		token = strtok(NULL, delim);
 	}
 	av[i] = NULL;
@@ -82,11 +82,11 @@ int _error(char *program, char *av[], int runs)
 
 	itoa(runs, buffer);
 
-	write(STDERR_FILENO, program, strlen(program));
+	write(STDERR_FILENO, program, _strlen(program));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, buffer, strlen(buffer));
+	write(STDERR_FILENO, buffer, _strlen(buffer));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, av[0], strlen(av[0]));
+	write(STDERR_FILENO, av[0], _strlen(av[0]));
 	write(STDERR_FILENO, ": not found\n", 12);
 	return (127);
 }
