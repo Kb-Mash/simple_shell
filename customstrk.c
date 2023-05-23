@@ -1,13 +1,13 @@
 #include "header.h"
 
 /**
- * customStrtok - function for strtok
+ * _strtok - function for strtok
  * @str: string to tokenize
  * @delimiters: bases for tokenization
  *
  * Return: token if it is a delimiter, otherwise NULL
  */
-char *customStrtok(const char *str, const char *delimiters)
+char *_strtok(const char *str, const char *delimiters)
 {
 int str_len = strlen(str);
 int delim_len = strlen(delimiters);
@@ -61,11 +61,11 @@ char str[] = "Hello,World,How,Are,You";
 char delimiters[] = ",";
 char *token;
 
-token = customStrtok(str, delimiters);
+token = _strtok(str, delimiters);
 while (token != NULL)
 {
 free(token);
-token = customStrtok(NULL, delimiters);
+token = _strtok(NULL, delimiters);
 }
 
 return (0);

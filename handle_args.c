@@ -11,6 +11,7 @@ void parse_command(char *av[], char *lineptr, char *delim)
 	char *token = NULL;
 	unsigned int i = 0;
 
+	token = _strtok(lineptr, delim);
 	while (token != NULL && i < SIZE - 1)
 	{
 		av[i++] = _strdup(token);

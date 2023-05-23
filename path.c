@@ -32,7 +32,7 @@ int search_path(char *cmd, char **fullpath)
 
 	dir = _strtok(path_copy, ":");
 	if (dir == NULL)
-		dir = strtok(NULL, ":");
+		dir = _strtok(NULL, ":");
 	while (dir != NULL)
 	{
 		dir_len = strlen(dir);
