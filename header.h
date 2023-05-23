@@ -25,6 +25,10 @@ void child_process(char *program, int runs,
 char *path, char *av[], char *line);
 char *_getenv(char *name);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+void customStrtok(const char *str, const char *delimiters);
+int main(int __attribute__ ((unused)) argc, char **argv);
+int main1(void);
+
 /*string function prototypes*/
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);

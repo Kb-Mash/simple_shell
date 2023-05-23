@@ -11,13 +11,15 @@ void customStrtok(const char *str, const char *delimiters)
 {
 int str_len = strlen(str);
 int delim_len = strlen(delimiters);
-char token[str_len + 1];
+char token[100];
 int token_index = 0;
 int is_delimiter = 0;
+int i, j;
 
-for (int i = 0; i <= str_len; i++)
+for (i = 0; i <= str_len; i++)
 {
-for (int j = 0; j < delim_len; j++)
+is_delimiter = 0;
+for (j = 0; j < delim_len; j++)
 {
 if (str[i] == delimiters[j])
 {
@@ -48,11 +50,11 @@ token[token_index++] = str[i];
 }
 
 /**
- * main - entry point
+ * main1 - entry point
  *
  * Return: void
  */
-int main(void)
+int main1(void)
 {
 char str[] = "Hello,World,How,Are,You";
 char delimiters[] = ",";
