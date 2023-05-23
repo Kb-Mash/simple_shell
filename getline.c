@@ -36,7 +36,7 @@ if (line >= *n)
 	*n *= 2;
 	*lineptr = realloc(*lineptr, *n);
 	if (*lineptr == NULL)
-		return (-1)
+		return (-1);
 }
 }
 (*lineptr)[line] = '\0';
