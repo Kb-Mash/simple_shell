@@ -24,7 +24,7 @@ int _error(char *program, char *av[], int runs);
 void child_process(char *program, int runs,
 char *path, char *av[], char *line);
 char *_getenv(char *name);
-
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 /*string function prototypes*/
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
