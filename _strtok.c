@@ -102,18 +102,40 @@ return (0);
  */
 int main1(void)
 {
-char str[] = "Hello,World,How,Are,You";
-char delimiters[] = ",";
+char str[] = "command1 && command2 || command3";
+char delimiters[] = "&&||";
 char *token;
 int execute = 1;
-
+bool previous_command_success = true;
 token = _strtok(str, delimiters);
+
 while (token != NULL)
 {
+	if (strcmp(token, "&&") == 0)
+	{
+	if (previous_command_success)
+	{
+	execute = 1;
+	}
+	else
+	{
+	execute = 0;
+	}
+	}
+	else if (strcmp(token, "||") == 0)
+	{
+	if (!previous_command_success)
+	execute = 1;
+	}
+	else
+	{
+	execute = 0;
+	}
 	if (process_command(token, execute) == -1)
 	{
-		return (errno);
+	return (errno);
 	}
+	previous_command_success = (execute == 1);
 	token = _strtok(NULL, delimiters);
 }
 return (0);
