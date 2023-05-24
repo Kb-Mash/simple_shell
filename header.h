@@ -8,6 +8,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 #define SIZE 1024
 
@@ -25,6 +26,11 @@ void child_process(char *program, int runs,
 char *path, char *av[], char *line);
 char *_getenv(char *name);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+char *_strtok(char *str, const char *delimiters);
+int write_message(const char *message);
+int process_command(const char *command, int execute);
+int main1(void);
+
 
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);

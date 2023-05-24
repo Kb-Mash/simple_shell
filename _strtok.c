@@ -83,7 +83,7 @@ char new_line[] = "\n";
 
 if (execute)
 {
-strcpy(message, static_part);
+_strcpy(message, static_part);
 strcat(message, command);
 strcat(message, new_line);
 
