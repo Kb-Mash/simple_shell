@@ -33,8 +33,8 @@ int process_command(const char *command, int execute);
 int main1(void);
 int main2(void);
 ssize_t print_message(int fd, const char *message);
-int unset_env(const char *variable, data_shell *datash);
-int set_env(const char *variable);
+int set_env(const char *variable, const char *value);
+int unset_env(const char *variable);
 
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
