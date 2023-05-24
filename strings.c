@@ -1,81 +1,111 @@
 #include "header.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: pointer for char parameter
- * Return: length of string
+ * _strcpy - copies the src string to dest pointer
+ * @dest: pointer to the buffer to copy to
+ * @src: string to be copied
+ * Return: the pointer to dest
  */
-int _strlen(char *s)
+char *_strcpy(char *dest, char *src)
 {
-	int len = 0;
+	int len, i;
 
-	while (s[len] != '\0')
+	len = 0;
+
+	while (src[len] != '\0')
 	{
 		len++;
 	}
-	return (len);
+
+	for (i = 0; i < len; i++)
+	{
+		dest[i] = src[i];
+	}
+	dest[i] = '\0';
+
+	return (dest);
+}
+
+/**
+ * _strlen - returns the length of a string
+ * @s: string to get length of
+ * Return: the length of the string
+ */
+int _strlen(char *s)
+{
+	int length = 0;
+
+	while (s[length] != '\0')
+	{
+		length++;
+	}
+
+	return (length);
 }
 
 /**
  * _strcmp - compares two strings
  * @s1: first string
  * @s2: second string
- * Return: returns an integer less than, equal to,
- * or greater than zero if s1 is found,re‐spectively,
- * to be less than, to match, or be greater than s2.
+ * Return: 0 if matching, else non-zero int
  */
 int _strcmp(char *s1, char *s2)
 {
-	while (*s1 && *s2)
+	int i;
+
+	for (i = 0; s1[i] != '\0' || s2[i] != '\0'; i++)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 	}
-	return (*s1 - *s2);
+	return (0);
 }
 
 /**
- * _strdup - duplicate a string
- * @s: string to duplicate
- * Return: pointer to the duplicated string
+ * _strdup - duplicates a string
+ * @s: string to be duplicated
+ * Return: pointer to duplicated string
  */
 char *_strdup(char *s)
 {
-	unsigned int i, len;
-	char *dup_s;
+	unsigned int k, len;
+	char *dup;
 
 	if (s == NULL)
 		return (NULL);
 
-	len = _strlen(s);
-	dup_s = malloc(sizeof(char) * (len + 1));
-	if (dup_s == NULL)
+	for (len = 0; s[len] != '\0'; len++)
+		;
+	dup = (char *)malloc(sizeof(char) * (len + 1));
+	if (dup == NULL)
 		return (NULL);
-
-	for (i = 0; i <= len; i++)
+	for (k = 0; k <= len; k++)
 	{
-		dup_s[i] = s[i];
+		dup[k] = s[k];
 	}
-	return (dup_s);
+	return (dup);
 }
 
 /**
- * _strcpy - copies a src string to dest string
- * @dest: buffer to copy src string to
- * @src: string to copy
- * Return: pointer to the dest string
+ * _strncmp - compare two strings
+ * @s1: first string
+ * @s2: second string.
+ * @n: number bytes of the strings to compare
+ * Return: 0 if s1 and s2 match, else non-zero int
  */
-char *_strcpy(char *dest, char *src)
+int _strncmp(const char *s1, const char *s2, size_t n)
 {
-	int i = 0;
+	size_t index;
 
-	while (src[i] != '\0')
+	for (index = 0; s1[index] && s2[index] && index < n; index++)
 	{
-		dest[i] = src[i];
-		i++;
+		if (s1[index] > s2[index])
+			return (s1[index] - s2[index]);
+		else if (s1[index] < s2[index])
+			return (s1[index] - s2[index]);
 	}
-
-	return (dest);
+	if (index == n)
+		return (0);
+	else
+		return (-15);
 }

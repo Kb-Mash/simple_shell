@@ -1,37 +1,38 @@
 #include "header.h"
 
 /**
- * _getenv - get an environment variable
+ * _getenv - retrieves an environment variable's value
  * @name: name of the environment variable
- *
- * Return: value of environment variable if found, otherwise NULL.
+ * Return: value of the environment variable
  */
 char *_getenv(char *name)
 {
-	int i = 0;
-	char *delim, *var, *name_value, *value;
+	int var_len, val_len, index, position, k;
+	char *val;
 
-	delim = "=";
+	var_len = _strlen(name);
 
-	if (name != NULL)
+	for (index = 0; environ[index]; index++)
 	{
-	if (environ == NULL)
-		return (NULL);
-	name_value = _strdup(environ[i]);
-	while (name_value != NULL)
-	{
-	var = strtok(name_value, delim);
-	if (_strcmp(var, name) == 0)
-	{
-	var = strtok(NULL, delim);
-	value = _strdup(var);
-	free(name_value);
-	return (value);
-	}
-	i++;
-	free(name_value);
-	name_value = _strdup(environ[i]);
-	}
+		if (_strncmp(name, environ[index], var_len) == 0)
+		{
+			val_len = _strlen(environ[index]) - var_len;
+			val = malloc(sizeof(char) * val_len);
+			if (val == NULL)
+			{
+				free(val);
+				return (NULL);
+			}
+
+			k = 0;
+			for (position = var_len + 1; environ[index][position]; position++, k++)
+			{
+				val[k] = environ[index][position];
+			}
+			val[k] = '\0';
+
+			return (val);
+		}
 	}
 	return (NULL);
 }

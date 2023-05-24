@@ -22,46 +22,43 @@ int is_executable(char *cmd)
  */
 int search_path(char *cmd, char **fullpath)
 {
-	char *path = _getenv("PATH"), *path_copy, *dir;
-	unsigned int cmd_len = strlen(cmd), path_len = strlen(path), dir_len = 0;
-	path_copy = malloc(path_len + 1);
-	
-	if (path_copy == NULL)
-		return (1);
-	strcpy(path_copy, path);
+	char *path, *path_copy, *dir;
+	unsigned int cmd_len = 0, path_len = 0, dir_len = 0;
 
-	dir = _strtok(path_copy, ":");
+	path = _getenv("PATH"), path_len = _strlen(path);
+	cmd_len = _strlen(cmd), path_copy = malloc(path_len + 1);
+	if (path_copy == NULL)
+	{
+		free(path);
+		return (1);
+	}
+	_strcpy(path_copy, path);
+	dir = strtok(path_copy, ":");
 	if (dir == NULL)
-		dir = _strtok(NULL, ":");
+		dir = strtok(NULL, ":");
 	while (dir != NULL)
 	{
-		dir_len = strlen(dir);
+		dir_len = _strlen(dir);
 		*fullpath = malloc(dir_len + cmd_len + 2);
 		if (*fullpath == NULL)
 		{
-			free(path);
-			free(path_copy);
+			free(path_copy), free(path);
 			return (1);
 		}
-		strcpy(*fullpath, dir);
-		(*fullpath)[dir_len] = '/';
-		strcpy(*fullpath + dir_len + 1, cmd);
+		_strcpy(*fullpath, dir), (*fullpath)[dir_len] = '/';
+		_strcpy(*fullpath + dir_len + 1, cmd);
 		(*fullpath)[dir_len + cmd_len + 1] = '\0';
 		if (is_executable(*fullpath))
 		{
-			free(path);
-			free(path_copy);
+			free(path_copy), free(path);
 			return (0);
 		}
 		else
 		{
-			free(*fullpath);
-			*fullpath = NULL;
-			dir = _strtok(NULL, ":");
+			free(*fullpath), *fullpath = NULL, dir = strtok(NULL, ":");
 		}
 	}
-	free(path);
-	free(path_copy);
+	free(path_copy), free(path);
 	return (1);
 }
 

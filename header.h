@@ -8,7 +8,6 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <stddef.h>
 
 #define SIZE 1024
 
@@ -25,15 +24,11 @@ int _error(char *program, char *av[], int runs);
 void child_process(char *program, int runs,
 char *path, char *av[], char *line);
 char *_getenv(char *name);
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-int main(int __attribute__ ((unused)) argc, char **argv);
-int main1(void);
-char *_strtok(const char *str, const char *delimiters);
 
-/*string function prototypes*/
+char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *s);
-char *_strcpy(char *dest,char *src);
+int _strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

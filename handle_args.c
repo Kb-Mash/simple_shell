@@ -11,11 +11,11 @@ void parse_command(char *av[], char *lineptr, char *delim)
 	char *token = NULL;
 	unsigned int i = 0;
 
-	token = _strtok(lineptr, delim);
+	token = strtok(lineptr, delim);
 	while (token != NULL && i < SIZE - 1)
 	{
 		av[i++] = _strdup(token);
-		token = _strtok(NULL, delim);
+		token = strtok(NULL, delim);
 	}
 	av[i] = NULL;
 }
@@ -65,7 +65,6 @@ void itoa(int num, char *buffer)
 		buffer[j] = buffer[i - j - 1];
 		buffer[i - j - 1] = temp;
 	}
-
 	buffer[i] = '\0';
 }
 
