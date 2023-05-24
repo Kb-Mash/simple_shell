@@ -22,13 +22,12 @@ int main(int __attribute__ ((unused)) argc, char **argv)
 			write(STDOUT_FILENO, "($) ", _strlen("($) "));
 			fflush(stdout);
 		}
-	line = getline(&lineptr, &n, stdin);
+	line = _getline(&lineptr, &n, stdin);
 	if (line == EOF || _strcmp(lineptr, "exit\n") == 0)
 	{
 		free(lineptr);
 		break;
 	}
-
 	parse_command(av, lineptr, delim);
 	if (av[0] == NULL)
 		continue;
