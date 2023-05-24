@@ -31,7 +31,8 @@ char *_strtok(char *str, const char *delimiters);
 int write_message(const char *message);
 int process_command(const char *command, int execute);
 int main1(void);
-
+int main2(void);
+ssize_t print_message(int fd, const char *message);
 
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
