@@ -102,11 +102,12 @@ return (0);
  */
 int main1(void)
 {
-char str[] = "command1 && command2 || command3";
+char str[] = "ls /var || ls /var";
 char delimiters[] = "&&||";
 char *token;
 int execute = 1;
 bool previous_command_success = true;
+
 token = _strtok(str, delimiters);
 
 while (token != NULL)
@@ -124,18 +125,25 @@ while (token != NULL)
 	}
 	else if (strcmp(token, "||") == 0)
 	{
+	{
 	if (!previous_command_success)
+	{
 	execute = 1;
 	}
 	else
 	{
 	execute = 0;
 	}
-	if (process_command(token, execute) == -1)
-	{
-	return (errno);
+        }
 	}
-	previous_command_success = (execute == 1);
+	else if (execute)
+	{
+	previous_command_success = (system(token) == 0);
+	}
+	else
+	{
+	previous_command_success = true;
+	}
 	token = _strtok(NULL, delimiters);
 }
 return (0);
