@@ -109,42 +109,35 @@ int execute = 1;
 bool previous_command_success = true;
 
 token = _strtok(str, delimiters);
-
 while (token != NULL)
 {
 	if (strcmp(token, "&&") == 0)
 	{
 	if (previous_command_success)
-	{
-	execute = 1;
+		execute = 1;
 	}
 	else
+		execute = 0;
 	{
-	execute = 0;
-	}
-	}
-	else if (strcmp(token, "||") == 0)
+	if (strcmp(token, "||") == 0)
 	{
 	{
 	if (!previous_command_success)
-	{
-	execute = 1;
+		execute = 1;
+	}
 	}
 	else
-	{
-	execute = 0;
+		execute = 0;
 	}
-        }
 	}
-	else if (execute)
+	if (execute)
 	{
 	previous_command_success = (system(token) == 0);
 	}
 	else
 	{
 	previous_command_success = true;
-	}
 	token = _strtok(NULL, delimiters);
-}
+	}
 return (0);
 }
